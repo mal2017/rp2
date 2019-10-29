@@ -1,0 +1,7 @@
+name: ucsctools-env
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - ucsc-fatotwobit=366

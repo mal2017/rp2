@@ -1,0 +1,8 @@
+channels:
+- conda-forge
+- bioconda
+- defaults
+dependencies:
+- bioconductor-deseq2
+- bioconductor-tximport=1.12.3
+- r-readr

@@ -1,0 +1,35 @@
+# The config is in yaml format and consists of two top level sections:
+# `analysis` and `samples`.
+# Briefly, the analysis section contains info that pertains to all samples or
+# metadata for the pipeline run.
+# The samples section contains sample-specific info.
+
+analysis:
+  project: template # your project name here
+  control_level: treatmentA # control condition
+  genome:
+    fasta: ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_30/GRCh38.primary_assembly.genome.fa.gz
+    gtf: ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_30/gencode.v30.annotation.gtf.gz
+  txome:
+    gencode: True
+    fasta: ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_30/gencode.v30.pc_transcripts.fa.gz
+  salmon_config:
+      bootstraps: 10
+  cluster_config: "bsub -J {cluster.name} -q {cluster.queue} -o {cluster.output} -e {cluster.error} -R {cluster.resources} -M {cluster.memory} -n {cluster.nCPUs}"
+samples:
+  samp1: # your own assigned name for this sample
+    condition: # list of covariates. Order of covariate must remain conserved across all samples, and the last one should be the condition of interest
+      - batch1
+      - treatmentA
+    fastq: # uri to fastq or fastq.gz.
+      r1:
+        - ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/001/SRR4422361/SRR4422361.fastq.gz
+  samp2: # your own assigned name for this sample
+    condition: # list of covariates. Order of covariate must remain conserved across all samples, and the last one should be the condition of interest
+      - batch1
+      - treatmentA
+    fastq: # uri to fastq or fastq.gz.
+      r1:
+        - ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/001/SRR4422361/SRR4422361.fastq.gz
+      r2:
+        - ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/001/SRR4422361/SRR4422361.fastq.gz # dummy r2
